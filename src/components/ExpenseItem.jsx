@@ -1,0 +1,39 @@
+import React from "react";
+import {AiFillCloseCircle} from 'react-icons/ai';
+import styled from 'styled-components'
+
+const ItemContainer = styled.div`
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid lightgray;    
+`;
+
+const Wrapper_cost_close = styled.div`
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+`
+
+const Cost = styled.span`
+    background-color: #1fa1ed;
+    border-radius: 47%;
+    padding: .2rem .7rem;
+    color: white;
+`
+
+const ExpenseItem = ()=> {
+    return(
+        <ItemContainer>
+          <span>hhhh</span>
+          <Wrapper_cost_close>
+            <Cost>50$</Cost>
+            <AiFillCloseCircle style={{fontSize:'1.2rem'}}/>
+          </Wrapper_cost_close>       
+        </ItemContainer>
+    )
+   
+}
+export default ExpenseItem
