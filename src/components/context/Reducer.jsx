@@ -6,5 +6,7 @@ export const Reducer = (state , action)=> {
             cost: action.payload.cost,
             id: Date.now()
         }]
+        case "DELET":
+            return state.filter(item => item.id !== action.payload.id)                  
     }
 }

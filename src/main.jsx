@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
+import ModalPortal from './components/ModalPortal'
 import './index.css'
 import ContextProvider from './components/context/Contexts'
 

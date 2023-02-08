@@ -10,13 +10,20 @@ const Btn = styled.button`
     border: none;
 `
 
-const Button = ({clickAdd , children})=> {
+const Button = ({clickAdd , children , stateBtn , clickYesModal, clickNoModal, id})=> {
 
-    const SaveBtn = ()=> {
-        clickAdd()
+    const clickHandler = ()=> {
+        if(stateBtn === 'save'){
+            clickAdd()
+        } else if(stateBtn === 'yesDelet'){
+            clickYesModal(id)
+        } else if(stateBtn === 'noDelet') {
+            clickNoModal()
+        }    
     }
+
     return(
-        <Btn onClick={SaveBtn}>{children}</Btn>
+        <Btn onClick={clickHandler}>{children}</Btn>
     )
 }
 export default Button

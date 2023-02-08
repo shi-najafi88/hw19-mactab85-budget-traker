@@ -1,6 +1,7 @@
-import React from "react";
+import React , {useContext} from "react";
 import {AiFillCloseCircle} from 'react-icons/ai';
 import styled from 'styled-components'
+import { store } from "./context/Contexts";
 
 const ItemContainer = styled.div`
     width: 96%;
@@ -25,15 +26,23 @@ const Cost = styled.span`
 `
 
 const ExpenseItem = ({item})=> {
+
+    const {setId , setModalStatus}= useContext(store)
+
+    const ShowModal =()=> {
+        setModalStatus('visible')
+        setId(item.id)
+        console.log('shi')
+    }
+
     return(
         <ItemContainer>
           <span>{item.name}</span>
           <Wrapper_cost_close>
             <Cost>{item.cost}</Cost>
-            <AiFillCloseCircle style={{fontSize:'1.2rem'}}/>
+            <AiFillCloseCircle onClick={ShowModal} style={{fontSize:'1.2rem'}}/>
           </Wrapper_cost_close>       
         </ItemContainer>
-    )
-   
+    )   
 }
 export default ExpenseItem

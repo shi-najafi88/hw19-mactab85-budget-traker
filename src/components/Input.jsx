@@ -15,7 +15,7 @@ const Input = ({placeholder , changeHandlers})=> {
         changeHandlers(event)
     }
     return(
-        <InputItem type="text" placeholder={placeholder} onChange={ChangeInput} />
+        <InputItem type="text" placeholder={placeholder} onChange={ChangeInput}/>
     )
 }
 export default Input
