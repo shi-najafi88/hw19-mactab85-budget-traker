@@ -18,9 +18,8 @@ align-items: center;
 const Budget = ()=> {
     return(
         <>
-          <BudgetBox>Budget:2000$ <Button /></BudgetBox>
-        </>
-        
+          <BudgetBox>Budget:2000$<Button children={"Edit"} /></BudgetBox>  
+        </>       
     )
 }
 export default Budget

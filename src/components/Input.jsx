@@ -8,9 +8,14 @@ padding: .6rem;
 outline: none;
 `
 
-const Input = ({placeholder})=> {
+
+const Input = ({placeholder , changeHandlers})=> {
+
+    const ChangeInput = (event)=> {
+        changeHandlers(event)
+    }
     return(
-        <InputItem type="text" placeholder={placeholder} />
+        <InputItem type="text" placeholder={placeholder} onChange={ChangeInput} />
     )
 }
 export default Input

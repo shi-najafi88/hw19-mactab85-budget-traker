@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useReducer} from 'react'
 import Budget from './components/Budget'
 import Remaining from './components/Remaining'
 import SpendSoFar from './components/Spendsofar'
@@ -6,6 +6,7 @@ import Input from './components/Input'
 import ExpenseItem from './components/ExpenseItem'
 import Button from './components/Button'
 import styled from 'styled-components'
+import { store } from './components/context/Contexts'
 import './App.css'
 
 
@@ -21,63 +22,75 @@ gap: 1rem;
 background-color: #f8f8f8;
 font-family: Arial, Helvetica, sans-serif;
 `;
-
 const Header = styled.h2`
  margin-right: 37rem;
 `;
-
 const Wrapper_budget = styled.div`
 display: flex;
 padding: 1rem;
 gap: 2rem;
 width: 80%; 
 `;
-
 const Wrapper_search = styled.div`
 width:60vw;
 display: flex;
 flex-direction: column;
 gap: 0.5rem;  
-`
-
+`;
 const H4 = styled.div`
-font-weight: 100;
-  
+font-weight: 100;  
 `
-
 const Wrapper_allItems = styled.div`
 width: 60vw;
 border: .5px solid lightgray;
 border-radius: 10px;
 overflow: hidden;
-`
-
+`;
 const WrapperAddExpense =styled.div`
 width: 60vw;
   display: flex;
   flex-direction: column;
   gap: .5rem;
 `;
-
 const H3 = styled.h3`
   margin: 1rem 0;
   font-weight: 100;
-`
-
+`;
 const Wrapper_lable = styled.div`
   display: flex;
   gap: 11rem;
   font-size: .8rem;
   color: gray;
-`
-
+`;
 const Wrapper_input = styled.div`
   display: flex;
   gap: 1rem;
   margin-bottom: .5rem;
-`
+`;
+////////////////////////////////////////
+
 
 function App() {
+  
+ const {expenseObj,setExpenseObj,state , dispatch}= useContext(store)
+
+  const ChangeHandlerName = (event)=> {
+    setExpenseObj({...expenseObj, name:event.target.value})
+  }
+
+  const ChangeHandlerCost = (event)=> {
+    setExpenseObj({...expenseObj, cost:event.target.value})
+  }
+
+  const AddHandler = ()=> {
+    dispatch({
+      type:"SAVE",
+      payload:{
+      name:expenseObj.name,
+      cost:expenseObj.cost
+      }
+      })
+    }
 
   return (
     <Container>
@@ -95,9 +108,9 @@ function App() {
       </Wrapper_search> 
 
       <Wrapper_allItems>
-        <ExpenseItem/>
-        <ExpenseItem/>
-        <ExpenseItem/>
+       {state.map(item => {
+         return <ExpenseItem item={item}/>
+       })}
       </Wrapper_allItems>
 
       <WrapperAddExpense>
@@ -108,11 +121,11 @@ function App() {
         </Wrapper_lable>
 
         <Wrapper_input>
-          <Input/>
-          <Input/>
+          <Input changeHandlers={ChangeHandlerName} value={expenseObj.name} />
+          <Input changeHandlers={ChangeHandlerCost} value={expenseObj.cost}/>
         </Wrapper_input>
 
-        <Button/>
+        <Button clickAdd={AddHandler}>Save</Button>
       </WrapperAddExpense>  
       
     </Container>

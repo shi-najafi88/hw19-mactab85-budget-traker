@@ -10,10 +10,13 @@ const Btn = styled.button`
     border: none;
 `
 
-const Button = ()=> {
-    return(
-        <Btn>SAVE</Btn>
+const Button = ({clickAdd , children})=> {
 
+    const SaveBtn = ()=> {
+        clickAdd()
+    }
+    return(
+        <Btn onClick={SaveBtn}>{children}</Btn>
     )
 }
 export default Button

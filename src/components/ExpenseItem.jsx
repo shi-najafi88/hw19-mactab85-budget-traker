@@ -24,12 +24,12 @@ const Cost = styled.span`
     color: white;
 `
 
-const ExpenseItem = ()=> {
+const ExpenseItem = ({item})=> {
     return(
         <ItemContainer>
-          <span>hhhh</span>
+          <span>{item.name}</span>
           <Wrapper_cost_close>
-            <Cost>50$</Cost>
+            <Cost>{item.cost}</Cost>
             <AiFillCloseCircle style={{fontSize:'1.2rem'}}/>
           </Wrapper_cost_close>       
         </ItemContainer>
