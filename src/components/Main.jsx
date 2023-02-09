@@ -3,6 +3,7 @@ import BudgetbOX from './BudgetBox'
 import Input from './Input'
 import ExpenseItem from './ExpenseItem'
 import Button from './Button'
+import EditModal from './EditModal'
 import styled from 'styled-components'
 import { store } from './context/Contexts'
 
@@ -65,28 +66,40 @@ const Wrapper_input = styled.div`
 `;
 ////////////////////////////////////////
 
-
 function Main() {
   
- const {expenseObj, setExpenseObj, state , dispatch}= useContext(store)
-
+ const {expenseObj, setExpenseObj, state , dispatch, totalBudget , setTotalBudget}= useContext(store)
+ 
   const ChangeHandlerName = (event)=> {
     setExpenseObj({...expenseObj, name:event.target.value})
   }
 
   const ChangeHandlerCost = (event)=> {
-    setExpenseObj({...expenseObj, cost:event.target.value})
+    setExpenseObj({...expenseObj, cost: parseInt (event.target.value)})
   }
 
   const AddHandler = ()=> {
-    dispatch({
-      type:"SAVE",
-      payload:{
-      name:expenseObj.name,
-      cost:expenseObj.cost
-      }
+    
+    if(expenseObj.name !== '' && expenseObj !== ''){
+      dispatch({
+        type:"SAVE",
+        payload:{
+        name:expenseObj.name,
+        cost:expenseObj.cost
+        }
       })
-      setExpenseObj({...expenseObj, name:"", cost:""})
+      // setExpenseObj({...expenseObj, name:"", cost:""})
+
+      //map for calculate price for budget box
+      let totalCost = expenseObj.cost 
+      state.map(item => {
+      totalCost += item.cost   
+      })
+
+      //setstate budgetbox
+      const calc= totalBudget.budget-totalCost
+      setTotalBudget({...totalBudget, remaining:calc, spend:totalCost})
+    }  
     }
 
   return (
@@ -94,9 +107,9 @@ function Main() {
       <Header>My Budget Planner</Header>
 
       <Wrapper_budget>
-        <BudgetbOX state={'editBtn'} color={'lightgray'} lable={"Budget:"} price={"2000$"}/>
-        <BudgetbOX color={'lightgreen'} lable={"Remaining:"} price={"2000$"}/>
-        <BudgetbOX color={'lightblue'} lable={"SpendSoFar:"} price={"2000$"}/>
+        <BudgetbOX state={'editBtn'} color={'lightgray'} lable={"Budget:"} price={totalBudget.budget}/>
+        <BudgetbOX color={'lightgreen'} lable={"Remaining:"} price={totalBudget.remaining}/>
+        <BudgetbOX color={'lightblue'} lable={"SpendSoFar:"} price={totalBudget.spend}/>
       </Wrapper_budget>
 
       <Wrapper_search>
@@ -124,6 +137,8 @@ function Main() {
 
         <Button clickAdd={AddHandler} stateBtn={'save'}>Save</Button>
       </WrapperAddExpense>  
+
+      {totalBudget.editmood?<EditModal/>:""}
       
     </Container>
   )

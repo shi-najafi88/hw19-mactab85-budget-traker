@@ -10,7 +10,7 @@ const Btn = styled.button`
     border: none;
 `
 
-const Button = ({clickAdd , children , stateBtn , clickYesModal, clickNoModal, id})=> {
+const Button = ({clickAdd , children , stateBtn , clickYesModal, clickNoModal, id , clickEdit})=> {
 
     const clickHandler = ()=> {
         if(stateBtn === 'save'){
@@ -19,7 +19,9 @@ const Button = ({clickAdd , children , stateBtn , clickYesModal, clickNoModal, i
             clickYesModal(id)
         } else if(stateBtn === 'noDelet') {
             clickNoModal()
-        }    
+        } else if(stateBtn === 'edit') {
+            clickEdit()
+        }   
     }
 
     return(

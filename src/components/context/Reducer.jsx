@@ -7,6 +7,8 @@ export const Reducer = (state , action)=> {
             id: Date.now()
         }]
         case "DELET":
-            return state.filter(item => item.id !== action.payload.id)                  
+            return state.filter(item => item.id !== action.payload.id)   
+                 
+        default: return state    
     }
 }

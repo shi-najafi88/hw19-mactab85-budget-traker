@@ -32,7 +32,6 @@ const ExpenseItem = ({item})=> {
     const ShowModal =()=> {
         setModalStatus('visible')
         setId(item.id)
-        console.log('shi')
     }
 
     return(
