@@ -51,7 +51,6 @@ const EditModal = ()=> {
        setTotalBudget({budget:targetVal,remaining:0,spend:0, editMood:false})   
     }
 
-   
     return(
         <ModalOverlay>
             <ModalWrapper>

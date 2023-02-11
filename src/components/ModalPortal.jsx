@@ -6,7 +6,7 @@ import  ReactDOM from "react-dom";
 
 const ModalOverlay = styled.div`
  position: absolute;
-    background-color: rgba(66,66,66,0.7);
+    background-color: rgba(14, 92, 180, 0.575);
     top: 0;
     left: 0;
     width: 100%;
@@ -66,10 +66,10 @@ const ModalPortal = ()=> {
         <ModalOverlay>
             <ModalWrapper>
                 <ModalText>
-                    Are you sure delet expense?
+                    Are you sure delet expense item?
                 </ModalText>
                 <WrapperBtn>
-                    <Button clickYesModal={()=>DeletHandler(id)} stateBtn={'yesDelet'}>Yes</Button>
+                    <Button clickYesModal={()=>DeletHandler(id)} stateBtn={'yesDelet'} styling={"red"}>Yes</Button>
                     <Button clickNoModal={DontDelet} stateBtn={'noDelet'}>No</Button>
                 </WrapperBtn>
             </ModalWrapper>

@@ -19,7 +19,7 @@ export const store = React.createContext({
 const ContextProvider = ({children})=> {
     const [state , dispatch] = useReducer(Reducer , [])
     const [modalStatus , setModalStatus] = useState('hiden')
-    const initialExpense = {name:"", cost:0 , id : ""}
+    const initialExpense = {name:"", cost:"", id : ""}
     const [expenseObj , setExpenseObj] = useState(initialExpense)
     const [id , setId] = useState()
     const initialCost = {budget:2000 , remaining:0 , spend:0 , editMood:false}

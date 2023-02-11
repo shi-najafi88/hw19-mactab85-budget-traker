@@ -10,7 +10,7 @@ const Btn = styled.button`
     border: none;
 `
 
-const Button = ({clickAdd , children , stateBtn , clickYesModal, clickNoModal, id , clickEdit, editBudget})=> {
+const Button = ({clickAdd , children , stateBtn , clickYesModal, clickNoModal, id , clickEdit, editBudget,styling})=> {
 
     const clickHandler = ()=> {
         if(stateBtn === 'save'){
@@ -27,7 +27,7 @@ const Button = ({clickAdd , children , stateBtn , clickYesModal, clickNoModal, i
 }
 
     return(
-        <Btn onClick={clickHandler}>{children}</Btn>
+        <Btn onClick={clickHandler} style={{backgroundColor:styling}}>{children}</Btn>
     )
 }
 export default Button

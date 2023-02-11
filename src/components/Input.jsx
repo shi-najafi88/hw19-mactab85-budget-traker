@@ -9,7 +9,7 @@ outline: none;
 `
 
 
-const Input = ({placeholder , changeHandlers , keyPrees})=> {
+const Input = ({placeholder , changeHandlers , keyPrees , value , styling})=> {
 
     const ChangeInput = (event)=> {
         changeHandlers(event)
@@ -19,7 +19,7 @@ const Input = ({placeholder , changeHandlers , keyPrees})=> {
       keyPrees(event)  
     }
     return(
-        <InputItem type="text" placeholder={placeholder} onChange={ChangeInput} onKeyDown={EnterHandel}/>
+        <InputItem type="text" placeholder={placeholder} onChange={ChangeInput} onKeyDown={EnterHandel} value={value} style={{width: styling}}/>
     )
 }
 export default Input

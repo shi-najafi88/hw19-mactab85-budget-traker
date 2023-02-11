@@ -8,7 +8,6 @@ import styled from 'styled-components'
 import { store } from './context/Contexts'
 
 
-
 const Container = styled.div`
 width:75vw;
 padding: 2rem 3.5rem;
@@ -56,14 +55,15 @@ const H3 = styled.h3`
 `;
 const Wrapper_lable = styled.div`
   display: flex;
-  gap: 11rem;
+  gap: 25rem;
   font-size: .8rem;
   color: gray;
 `;
 const Wrapper_input = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 2.5rem;
   margin-bottom: .5rem;
+  
 `;
 ////////////////////////////////////////
 
@@ -89,7 +89,8 @@ function Main() {
         cost:expenseObj.cost
         }
       })
-      // setExpenseObj({...expenseObj, name:"", cost:""})
+      //clear input after save
+      setExpenseObj({...expenseObj, name:"", cost:""})
 
       //map for calculate price for budget box
       let totalCost = expenseObj.cost 
@@ -136,8 +137,7 @@ function Main() {
       {state.map(item => {
         if(item.name === search.searchData){
           return <ExpenseItem item={item} />
-        } else{alert('not found')}  
-       
+        }    
       })}
      </Wrapper_allItems>
      :
@@ -156,8 +156,8 @@ function Main() {
         </Wrapper_lable>
 
         <Wrapper_input>
-          <Input changeHandlers={ChangeHandlerName} value={expenseObj.name} />
-          <Input changeHandlers={ChangeHandlerCost} value={expenseObj.cost}/>
+          <Input changeHandlers={ChangeHandlerName} value={expenseObj.name} styling={"45%"} />
+          <Input changeHandlers={ChangeHandlerCost} value={expenseObj.cost} styling={"45%"}/>
         </Wrapper_input>
 
         <Button clickAdd={AddHandler} stateBtn={'save'}>Save</Button>

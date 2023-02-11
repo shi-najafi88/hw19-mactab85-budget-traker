@@ -20,8 +20,8 @@ const Wrapper_cost_close = styled.div`
 
 const Cost = styled.span`
     background-color: #1fa1ed;
-    border-radius: 47%;
-    padding: .2rem .7rem;
+    border-radius: 15%;
+    padding: .2rem .8rem;
     color: white;
 `
 
@@ -39,7 +39,7 @@ const ExpenseItem = ({item})=> {
           <span>{item.name}</span>
           <Wrapper_cost_close>
             <Cost>{item.cost}</Cost>
-            <AiFillCloseCircle onClick={ShowModal} style={{fontSize:'1.2rem'}}/>
+            <AiFillCloseCircle onClick={ShowModal} style={{fontSize:'1.3rem', fill:'red'}}/>
           </Wrapper_cost_close>       
         </ItemContainer>
     )   
