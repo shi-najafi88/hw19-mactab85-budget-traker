@@ -11,7 +11,9 @@ export const store = React.createContext({
     id:"",
     setId:()=>{},
     totalBudget:{},
-    setTotalBudget:()=>{}
+    setTotalBudget:()=>{},
+    search:{},
+    setSearch:()=>{}
 }) 
 
 const ContextProvider = ({children})=> {
@@ -22,6 +24,7 @@ const ContextProvider = ({children})=> {
     const [id , setId] = useState()
     const initialCost = {budget:2000 , remaining:0 , spend:0 , editMood:false}
     const [totalBudget , setTotalBudget] = useState(initialCost)
+    const [search,setSearch] = useState({searchData:"" , searchMood:false})
   
     return(
         <store.Provider value={{
@@ -29,7 +32,8 @@ const ContextProvider = ({children})=> {
             expenseObj , setExpenseObj,
             modalStatus , setModalStatus,
             id , setId ,
-            totalBudget , setTotalBudget       
+            totalBudget , setTotalBudget ,
+            search , setSearch      
         }}>{children}</store.Provider>
     )
 }

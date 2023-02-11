@@ -9,13 +9,17 @@ outline: none;
 `
 
 
-const Input = ({placeholder , changeHandlers})=> {
+const Input = ({placeholder , changeHandlers , keyPrees})=> {
 
     const ChangeInput = (event)=> {
         changeHandlers(event)
     }
+
+    const EnterHandel = (event)=> {
+      keyPrees(event)  
+    }
     return(
-        <InputItem type="text" placeholder={placeholder} onChange={ChangeInput}/>
+        <InputItem type="text" placeholder={placeholder} onChange={ChangeInput} onKeyDown={EnterHandel}/>
     )
 }
 export default Input

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from 'styled-components'
 import Input from "./Input";
 import Button from "./Button";
+import { store } from "./context/Contexts";
 
 
 const ModalOverlay = styled.div`
@@ -38,22 +39,31 @@ display: flex;
 gap: 1rem;
 `
 
-
 const EditModal = ()=> {
+
+    let targetVal=''
+    const {totalBudget , setTotalBudget } = useContext(store)
+
+    const UpdateBugetPrice =(event)=> {
+       targetVal= event.target.value
+    }
+    const EditBudgetSave = ()=> {    
+       setTotalBudget({budget:targetVal,remaining:0,spend:0, editMood:false})   
+    }
+
+   
     return(
         <ModalOverlay>
             <ModalWrapper>
                 <ModalText>
                    Edit total budget:
                 </ModalText>
-                <Input />
+                <Input changeHandlers ={UpdateBugetPrice} value={totalBudget.budget} />
                 <WrapperBtn>
-                    <Button >Save</Button>
-                    <Button >Exit</Button>
+                    <Button editBudget={EditBudgetSave} stateBtn={"saveEdit"}>Save</Button>
                 </WrapperBtn>
             </ModalWrapper>
-        </ModalOverlay>
+        </ModalOverlay>    
     )
-
 }
 export default EditModal

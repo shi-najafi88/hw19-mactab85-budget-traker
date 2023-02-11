@@ -16,7 +16,7 @@ position: relative;
 `
 
 const BudgetbOX = ({color,lable,state,price})=> {
-    const {setTotalBudget} = useContext(store)
+    const {totalBudget,setTotalBudget} = useContext(store)
 
     const EditHandler = ()=> {
         setTotalBudget({editmood:true})     

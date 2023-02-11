@@ -11,8 +11,6 @@ function App() {
   return (
    <div>
     {modalStatus == 'visible'? <ModalPortal/> : <Main/>}
-    {/* <Main/>
-    <ModalPortal/> */}
    </div>
   )
 }

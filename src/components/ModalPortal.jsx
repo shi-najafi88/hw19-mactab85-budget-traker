@@ -38,7 +38,7 @@ display: flex;
 gap: 1rem;
 `
 
-const ModalPortal = ({item})=> {
+const ModalPortal = ()=> {
 
     const {dispatch ,modalStatus , setModalStatus, id , setId} = useContext(store)
 

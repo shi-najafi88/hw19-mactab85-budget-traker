@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import { store } from './context/Contexts'
 
 
+
 const Container = styled.div`
 width:75vw;
 padding: 2rem 3.5rem;
@@ -68,7 +69,7 @@ const Wrapper_input = styled.div`
 
 function Main() {
   
- const {expenseObj, setExpenseObj, state , dispatch, totalBudget , setTotalBudget}= useContext(store)
+ const {expenseObj, setExpenseObj, state , dispatch, totalBudget , setTotalBudget , search , setSearch}= useContext(store)
  
   const ChangeHandlerName = (event)=> {
     setExpenseObj({...expenseObj, name:event.target.value})
@@ -102,8 +103,21 @@ function Main() {
     }  
     }
 
+    const searchHandler = (event)=> {
+      setSearch({...search , searchData: event.target.value})
+    }
+
+    const EnterHandler = (event)=> {
+      console.log(event.keyCode)
+      if(event.keyCode === 13){
+        setSearch({...search , searchMood:true})
+      }     
+    }
+    
+
   return (
     <Container>
+      
       <Header>My Budget Planner</Header>
 
       <Wrapper_budget>
@@ -114,14 +128,25 @@ function Main() {
 
       <Wrapper_search>
         <H4>Expenses</H4> 
-        <Input placeholder={"Type To Search..."}/>
+        <Input placeholder={"Type To Search..."} changeHandlers={searchHandler} keyPrees={EnterHandler} />
       </Wrapper_search> 
 
-      <Wrapper_allItems>
+      {search.searchMood == true ?
+     <Wrapper_allItems>
+      {state.map(item => {
+        if(item.name === search.searchData){
+          return <ExpenseItem item={item} />
+        } else{alert('not found')}  
+       
+      })}
+     </Wrapper_allItems>
+     :
+     <Wrapper_allItems>
        {state.map(item => {
          return <ExpenseItem item={item} key={item.id} />
        })}
-      </Wrapper_allItems>
+     </Wrapper_allItems>
+      }
 
       <WrapperAddExpense>
         <H3>Add Expense</H3>
@@ -136,11 +161,9 @@ function Main() {
         </Wrapper_input>
 
         <Button clickAdd={AddHandler} stateBtn={'save'}>Save</Button>
-      </WrapperAddExpense>  
-
-      {totalBudget.editmood?<EditModal/>:""}
-      
-    </Container>
+      </WrapperAddExpense>
+      {totalBudget.editmood && (<EditModal/>) }  
+    </Container>  
   )
 }
 
